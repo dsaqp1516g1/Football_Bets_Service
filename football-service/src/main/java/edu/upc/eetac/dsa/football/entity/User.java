@@ -52,7 +52,7 @@ public class User {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 }

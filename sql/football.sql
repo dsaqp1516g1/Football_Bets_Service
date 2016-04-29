@@ -1,4 +1,4 @@
-drop database if exists football;
+﻿drop database if exists football;
 create database football;	
 use football;
 
@@ -12,14 +12,14 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE usuario_rol (
-	usuarioid BINARY(16) NOT NULL,
+	userid BINARY(16) NOT NULL,
 	rol ENUM ('registrado', 'admin'),
 	FOREIGN KEY (usuarioid) REFERENCES usuario(id) on delete cascade,
 	PRIMARY KEY (usuarioid, rol)
 );
 
 CREATE TABLE auth_tokens (
-	usuarioid BINARY(16) NOT NULL,
+	userid BINARY(16) NOT NULL,
 	token BINARY(16) NOT NULL,
 	FOREIGN KEY (usuarioid) REFERENCES usuario(id) on delete cascade,
 	PRIMARY KEY (token)

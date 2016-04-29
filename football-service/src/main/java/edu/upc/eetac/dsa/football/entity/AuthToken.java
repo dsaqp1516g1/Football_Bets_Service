@@ -11,7 +11,7 @@ import java.util.List;
 public class AuthToken {
     @InjectLinks({})
     private List<Link> links;
-    private String usuarioid;
+    private String userid;
     private String token;
 
     public List<Link> getLinks() {
@@ -22,19 +22,19 @@ public class AuthToken {
         this.links = links;
     }
 
-    public String getUsuarioid() {
-        return usuarioid;
-    }
-
-    public void setUsuarioid(String usuarioid) {
-        this.usuarioid = usuarioid;
-    }
-
     public String getToken() {
         return token;
     }
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }
