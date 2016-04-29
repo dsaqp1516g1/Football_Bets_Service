@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by toni on 28/04/16.
  */
-public class apuesta {
+public class Apuesta {
     @InjectLinks({})
     private List<Link> links;
     private String id;
