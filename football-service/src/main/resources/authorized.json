@@ -1,0 +1,14 @@
+[
+  {
+    "path": "myresource",
+    "methods": ["GET"]
+  },
+  {
+    "path": "usuario",
+    "methods": ["POST"]
+  },
+  {
+    "path": "login",
+    "methods": ["POST"]
+  }
+]

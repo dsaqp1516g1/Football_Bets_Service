@@ -1,0 +1,219 @@
+{
+	"id": "8698fee5-8a46-7848-e181-73d98a2454ad",
+	"name": "Football-Bets",
+	"description": "    ",
+	"order": [
+		"d7d24fb9-2c98-85df-7ccc-2ca8a65b13da",
+		"e9b244bb-9a4a-7c36-8c74-1fe2614f9a37",
+		"f588e5d1-fa91-3397-4af4-f38c1ce79717",
+		"7ca3902f-d8af-3a3b-740f-f0aa1cfd284e",
+		"293ac224-6348-51c4-d22b-aa969b355cec",
+		"12e0054a-9045-6a15-2a76-76ed187eec52",
+		"cf7d843d-1e63-bfd9-0d05-74e0a5459d8f"
+	],
+	"folders": [],
+	"timestamp": 1462036224095,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "12e0054a-9045-6a15-2a76-76ed187eec52",
+			"headers": "",
+			"url": "http://localhost:8080/football/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "admin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "admin1234",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462043781374,
+			"name": "[LOGIN] Login Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "293ac224-6348-51c4-d22b-aa969b355cec",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\n",
+			"url": "http://localhost:8080/football/usuario/D1B1DFEB0EFD11E69F66001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462040182992,
+			"name": "[USER] Supr Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "7ca3902f-d8af-3a3b-740f-f0aa1cfd284e",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\nContent-Type: application/vnd.dsa.football.user+json\n",
+			"url": "http://localhost:8080/football/usuario/D1B1DFEB0EFD11E69F66001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462040153670,
+			"name": "[USER] Mod Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": [],
+			"rawModeData": "{\n  \"id\": \"D1B1DFEB0EFD11E69F66001F3BC3E069\",\n  \"loginid\": \"mbmarkus10\",\n  \"email\": \"me2@me.com\",\n  \"balance\": 12.1\n}"
+		},
+		{
+			"id": "cf7d843d-1e63-bfd9-0d05-74e0a5459d8f",
+			"headers": "X-Auth-Token: 2c29c59f0f0811e69f66001f3bc3e069\n",
+			"url": "http://localhost:8080/football/login",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462043863181,
+			"name": "[LOGIN] Logout Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "d7d24fb9-2c98-85df-7ccc-2ca8a65b13da",
+			"headers": "",
+			"url": "http://localhost:8080/football/myresource",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462038130011,
+			"name": "Prueba",
+			"description": "Prueba",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "e9b244bb-9a4a-7c36-8c74-1fe2614f9a37",
+			"headers": "",
+			"url": "http://localhost:8080/football/usuario",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "mbmarkus9",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "me@me.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "balance",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462038278735,
+			"name": "[USER] Registro Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "f588e5d1-fa91-3397-4af4-f38c1ce79717",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\n",
+			"url": "http://localhost:8080/football/usuario/D1B1DFEB0EFD11E69F66001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "loginid",
+					"value": "mbmarkus9",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "me@me.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "balance",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462039816533,
+			"name": "[USER] Get Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		}
+	]
+}

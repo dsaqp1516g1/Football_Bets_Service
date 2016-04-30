@@ -14,14 +14,14 @@ CREATE TABLE usuario (
 CREATE TABLE user_roles (
 	userid BINARY(16) NOT NULL,
 	rol ENUM ('registrado', 'admin'),
-	FOREIGN KEY (usuarioid) REFERENCES usuario(id) on delete cascade,
-	PRIMARY KEY (usuarioid, rol)
+	FOREIGN KEY (userid) REFERENCES usuario(id) on delete cascade,
+	PRIMARY KEY (userid, rol)
 );
 
 CREATE TABLE auth_tokens (
 	userid BINARY(16) NOT NULL,
 	token BINARY(16) NOT NULL,
-	FOREIGN KEY (usuarioid) REFERENCES usuario(id) on delete cascade,
+	FOREIGN KEY (userid) REFERENCES usuario(id) on delete cascade,
 	PRIMARY KEY (token)
 );
 
@@ -95,3 +95,6 @@ FOREIGN KEY (usuarioid) REFERENCES usuario(id) on delete cascade,
 FOREIGN KEY (apuestaid) REFERENCES apuesta(id) on delete cascade,
 PRIMARY KEY (id)
 );
+
+INSERT INTO usuario (id, loginid, password, email, balance) values (UNHEX('390da9ff0f0311e69f66001f3bc3e069'), 'admin', UNHEX(MD5('admin1234')), 'admin@football.com', 2000);
+INSERT INTO user_roles (userid, rol) values (UNHEX('390da9ff0f0311e69f66001f3bc3e069'), 'admin');

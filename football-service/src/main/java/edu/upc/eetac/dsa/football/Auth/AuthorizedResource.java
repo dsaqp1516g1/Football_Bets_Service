@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 /**
  * Created by marc on 2/03/16.
  */
+
 public class AuthorizedResource {
     private String path;
     private List<String> methods;
