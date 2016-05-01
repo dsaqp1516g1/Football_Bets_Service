@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.football;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 
@@ -14,6 +15,6 @@ public class FootballResourceConfig extends ResourceConfig {
         register(RolesAllowedDynamicFeature.class);
         packages("edu.upc.eetac.dsa.football.cors");
         register(JacksonFeature.class);
-        //register(DeclarativeLinkingFeature.class);
+        register(DeclarativeLinkingFeature.class);
     }
 }

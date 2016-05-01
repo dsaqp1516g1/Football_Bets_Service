@@ -10,5 +10,13 @@
   {
     "path": "login",
     "methods": ["POST"]
+  },
+  {
+    "path": "equipo/n/([a-f]{5})?",
+    "methods": ["GET"]
+  },
+  {
+    "path": "(?i)equipo/([0-9a-f]{32})?",
+    "methods": ["GET"]
   }
 ]

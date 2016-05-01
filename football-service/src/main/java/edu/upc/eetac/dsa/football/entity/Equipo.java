@@ -1,5 +1,11 @@
 package edu.upc.eetac.dsa.football.entity;
 
+import edu.upc.eetac.dsa.football.EquipoResource;
+import edu.upc.eetac.dsa.football.FootballMediaType;
+import edu.upc.eetac.dsa.football.FootballRootAPIResource;
+import edu.upc.eetac.dsa.football.UserResource;
+import org.glassfish.jersey.linking.Binding;
+import org.glassfish.jersey.linking.InjectLink;
 import org.glassfish.jersey.linking.InjectLinks;
 
 import javax.ws.rs.core.Link;
@@ -9,7 +15,12 @@ import java.util.List;
  * Created by toni on 28/04/16.
  */
 public class Equipo {
-    @InjectLinks({})
+    @InjectLinks({
+            @InjectLink(resource = FootballRootAPIResource.class, style = InjectLink.Style.ABSOLUTE,
+                    rel = "self bookmark home", title = "Football Root API"),
+            @InjectLink(resource = EquipoResource.class, style = InjectLink.Style.ABSOLUTE,
+                    rel = "creacion-equipo", title = "Creación", type= FootballMediaType.football_EQUIPO)
+    })
     private List<Link> links;
     private String id;
     private String nombre;

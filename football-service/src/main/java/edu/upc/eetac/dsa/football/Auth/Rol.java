@@ -26,4 +26,8 @@ public class Rol {
 
         return resultado;
     }
+
+    public boolean permisoAdmin(SecurityContext securityContext ){
+        return securityContext.isUserInRole("admin");
+    }
 }
