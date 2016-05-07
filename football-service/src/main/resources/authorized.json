@@ -12,11 +12,15 @@
     "methods": ["POST"]
   },
   {
-    "path": "equipo/n/([a-f]{5})?",
+    "path": "equipo",
     "methods": ["GET"]
   },
   {
     "path": "(?i)equipo/([0-9a-f]{32})?",
+    "methods": ["GET"]
+  },
+  {
+    "path": "(?i)equipo/(?i)n/([0-9a-f]{3})?",
     "methods": ["GET"]
   }
 ]

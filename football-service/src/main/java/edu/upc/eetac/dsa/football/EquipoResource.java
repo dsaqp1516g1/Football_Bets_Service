@@ -78,10 +78,9 @@ public class EquipoResource {
         return equipo;
     }
 
-    @Path("/{id}")
     @GET
     @Produces(FootballMediaType.football_EQUIPO_COLLECTION)
-    public EquipoCollection getEquipos(@PathParam("id") String id) {
+    public EquipoCollection getEquipos() {
         EquipoCollection equipoCollection = null;
 
         try {
@@ -90,7 +89,7 @@ public class EquipoResource {
             throw new InternalServerErrorException(e.getMessage());
         }
         if(equipoCollection == null)
-            throw new NotFoundException("Equipo with id = "+id+" doesn't exist");
+            throw new NotFoundException("Equipos doesn't exist");
         return equipoCollection;
     }
 
@@ -122,7 +121,7 @@ public class EquipoResource {
 
     @Path("/{id}")
     @DELETE
-    public void deleteUser(@PathParam("id") String id){
+    public void deleteEquipo(@PathParam("id") String id){
 
         if(!new Rol().permisoAdmin(securityContext))
             throw new ForbiddenException("operation not allowed");

@@ -4,12 +4,19 @@
 	"description": "    ",
 	"order": [
 		"d7d24fb9-2c98-85df-7ccc-2ca8a65b13da",
+		"1718beb1-3089-fe2d-f9ce-f5034444d8e6",
 		"e9b244bb-9a4a-7c36-8c74-1fe2614f9a37",
 		"f588e5d1-fa91-3397-4af4-f38c1ce79717",
 		"7ca3902f-d8af-3a3b-740f-f0aa1cfd284e",
 		"293ac224-6348-51c4-d22b-aa969b355cec",
 		"12e0054a-9045-6a15-2a76-76ed187eec52",
-		"cf7d843d-1e63-bfd9-0d05-74e0a5459d8f"
+		"cf7d843d-1e63-bfd9-0d05-74e0a5459d8f",
+		"b21fa647-6f09-b308-fb85-f28b7525cd18",
+		"2f2f437b-6b89-0be3-33bf-e89bd020c31d",
+		"cfc2bb50-04c8-de51-edbd-07b0db625550",
+		"f4eea7a2-cead-eeed-9a64-02d3fb8c4dc8",
+		"6955ff37-30bc-c15f-b4ef-38753490667c",
+		"66fdf0f8-a0f7-501f-cf04-8cc3303aca25"
 	],
 	"folders": [],
 	"timestamp": 1462036224095,
@@ -50,6 +57,26 @@
 			"responses": []
 		},
 		{
+			"id": "1718beb1-3089-fe2d-f9ce-f5034444d8e6",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\n",
+			"url": "http://localhost:8080/football",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"data": [],
+			"dataMode": "urlencoded",
+			"name": "Home (HATEOAS)",
+			"description": "Prueba",
+			"descriptionFormat": "html",
+			"time": 1462128166472,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
 			"id": "293ac224-6348-51c4-d22b-aa969b355cec",
 			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\n",
 			"url": "http://localhost:8080/football/usuario/D1B1DFEB0EFD11E69F66001F3BC3E069",
@@ -64,6 +91,102 @@
 			"helperAttributes": {},
 			"time": 1462040182992,
 			"name": "[USER] Supr Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": [],
+			"rawModeData": ""
+		},
+		{
+			"id": "2f2f437b-6b89-0be3-33bf-e89bd020c31d",
+			"headers": "",
+			"url": "http://localhost:8080/football/equipo/9B2CD2AC0FF511E6942C001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Barcelona",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nomenclatura",
+					"value": "BARC",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "valor",
+					"value": "100000000",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462146447466,
+			"name": "[EQUIPO] Get Equipo",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "66fdf0f8-a0f7-501f-cf04-8cc3303aca25",
+			"headers": "",
+			"url": "http://localhost:8080/football/equipo/",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Barcelona",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nomenclatura",
+					"value": "BARC",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "valor",
+					"value": "100000000",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462185611217,
+			"name": "[EQUIPO_COLL] Get Equipos",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "6955ff37-30bc-c15f-b4ef-38753490667c",
+			"headers": "X-Auth-Token: 37c24ee7105111e683ac001f3bc3e069\n",
+			"url": "http://localhost:8080/football/equipo/9B2CD2AC0FF511E6942C001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462185256227,
+			"name": "[EQUIPO] Supr Equipo",
 			"description": "",
 			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
 			"responses": [],
@@ -90,6 +213,44 @@
 			"rawModeData": "{\n  \"id\": \"D1B1DFEB0EFD11E69F66001F3BC3E069\",\n  \"loginid\": \"mbmarkus10\",\n  \"email\": \"me2@me.com\",\n  \"balance\": 12.1\n}"
 		},
 		{
+			"id": "b21fa647-6f09-b308-fb85-f28b7525cd18",
+			"headers": "X-Auth-Token: eda37c4f0ff411e6942c001f3bc3e069\n",
+			"url": "http://localhost:8080/football/equipo",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Barcelona",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nomenclatura",
+					"value": "FCB",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "valor",
+					"value": "100000000",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462145579436,
+			"name": "[EQUIPO] Registro Equipo",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
 			"id": "cf7d843d-1e63-bfd9-0d05-74e0a5459d8f",
 			"headers": "X-Auth-Token: 2c29c59f0f0811e69f66001f3bc3e069\n",
 			"url": "http://localhost:8080/football/login",
@@ -104,6 +265,44 @@
 			"helperAttributes": {},
 			"time": 1462043863181,
 			"name": "[LOGIN] Logout Usuario",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "cfc2bb50-04c8-de51-edbd-07b0db625550",
+			"headers": "",
+			"url": "http://localhost:8080/football/equipo/n/FCB",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "Barcelona",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nomenclatura",
+					"value": "BARC",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "valor",
+					"value": "100000000",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462146437148,
+			"name": "[EQUIPO] Get Equipo Nomenclatura",
 			"description": "",
 			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
 			"responses": []
@@ -170,6 +369,26 @@
 			"description": "",
 			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
 			"responses": []
+		},
+		{
+			"id": "f4eea7a2-cead-eeed-9a64-02d3fb8c4dc8",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\nContent-Type: application/vnd.dsa.football.equipo+json\n",
+			"url": "http://localhost:8080/football/equipo/9B2CD2AC0FF511E6942C001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1462183987993,
+			"name": "[EQUIPO] Mod Equipo",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": [],
+			"rawModeData": "{\n  \"id\": \"9B2CD2AC0FF511E6942C001F3BC3E069\",\n  \"nombre\": \"Barcelona\",\n  \"nomenclatura\": \"BARC\",\n  \"valor\": 100000000\n}"
 		},
 		{
 			"id": "f588e5d1-fa91-3397-4af4-f38c1ce79717",
