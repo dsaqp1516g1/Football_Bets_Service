@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Created by mbmarkus on 29/04/16.
  */
-public class LigaCollection {
+public class CampeonatoCollection {
     @InjectLinks({})
     private List<Link> links;
-    private List<Liga> listado_liga = new ArrayList<>();
+    private List<Campeonato> listado_campeonato = new ArrayList<>();
 
     public List<Link> getLinks() {
         return links;
@@ -22,11 +22,11 @@ public class LigaCollection {
         this.links = links;
     }
 
-    public List<Liga> getListado_liga() {
-        return listado_liga;
+    public List<Campeonato> getListado_campeonato() {
+        return listado_campeonato;
     }
 
-    public void setListado_liga(List<Liga> listado_liga) {
-        this.listado_liga = listado_liga;
+    public void setListado_campeonato(List<Campeonato> listado_campeonato) {
+        this.listado_campeonato = listado_campeonato;
     }
 }
