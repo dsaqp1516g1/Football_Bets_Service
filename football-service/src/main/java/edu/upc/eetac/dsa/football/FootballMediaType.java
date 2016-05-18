@@ -15,7 +15,7 @@ public interface FootballMediaType {
     public final static String football_JUGADORES_COLLECTION = "application/vnd.dsa.football.resources+json";
     public final static String football_LIGA = "application/vnd.dsa.football.moviesuser+json";
     public final static String football_LIGA_COLLECTION = "application/vnd.dsa.football.resources+json";
-    public final static String football_PARTIDO = "application/vnd.dsa.football.moviesuser+json";
+    public final static String football_PARTIDO = "application/vnd.dsa.football.partido+json";
     public final static String football_PARTIDO_COLLECTION = "application/vnd.dsa.football.resources+json";
 
 }
