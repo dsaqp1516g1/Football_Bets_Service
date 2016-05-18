@@ -12,7 +12,6 @@ public class Apuesta {
     @InjectLinks({})
     private List<Link> links;
     private String id;
-    private String partidoid;
     private float cuota1;
     private float cuotax;
     private float cuota2;
@@ -41,14 +40,6 @@ public class Apuesta {
 
     public void setCuota1(float cuota1) {
         this.cuota1 = cuota1;
-    }
-
-    public String getPartidoid() {
-        return partidoid;
-    }
-
-    public void setPartidoid(String partidoid) {
-        this.partidoid = partidoid;
     }
 
     public float getCuotax() {

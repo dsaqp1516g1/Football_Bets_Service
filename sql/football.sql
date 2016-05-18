@@ -33,8 +33,7 @@ valor INTEGER(50) NOT NULL,
 PRIMARY KEY(id)
 );
 
-CREATE TABLE liga(
-id BINARY(16) NOT NULL,
+CREATE TABLE campeonato(
 equipoid BINARY(16) NOT NULL,
 nombreequipo VARCHAR(50) NOT NULL,
 ranking INTEGER(16) NOT NULL,
@@ -42,8 +41,7 @@ puntos INTEGER(16) NOT NULL,
 golesfavor INTEGER(16) NOT NULL,
 golescontra INTEGER(16) NOT NULL,
 diferencia INTEGER(16) NOT NULL,
-FOREIGN KEY(equipoid) REFERENCES equipo(id) on delete cascade,
-PRIMARY KEY(id)
+FOREIGN KEY(equipoid) REFERENCES equipo(id) on delete cascade
 );
 
 CREATE TABLE jugadores(
@@ -73,14 +71,12 @@ PRIMARY KEY(id)
 
 CREATE TABLE apuesta(
 id BINARY(16) NOT NULL,
-partidoid BINARY(16) NOT NULL,
 cuota1 FLOAT(10,2) NOT NULL,
 cuotax FLOAT(10,2) NOT NULL,
 cuota2 FLOAT(10,2) NOT NULL,
 ganadora ENUM ('1','x','2'),
 estado ENUM ('activa','finalizada'),
-FOREIGN KEY(partidoid) REFERENCES partido(id) on delete cascade,
-PRIMARY KEY(id)
+FOREIGN KEY(id) REFERENCES partido(id) on delete cascade
 );
 
 CREATE TABLE apuesta_usuario(

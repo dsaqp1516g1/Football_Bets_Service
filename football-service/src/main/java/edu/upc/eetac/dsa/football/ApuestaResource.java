@@ -3,7 +3,7 @@ package edu.upc.eetac.dsa.football;
 import edu.upc.eetac.dsa.football.Auth.Rol;
 import edu.upc.eetac.dsa.football.DAO.ApuestaAlreadyExistsException;
 import edu.upc.eetac.dsa.football.DAO.ApuestaDAO;
-import edu.upc.eetac.dsa.football.DAO.ApuestaDAOimpl;
+import edu.upc.eetac.dsa.football.DAO.ApuestaDAOImpl;
 import edu.upc.eetac.dsa.football.entity.Apuesta;
 import edu.upc.eetac.dsa.football.entity.ApuestaCollection;
 
@@ -25,10 +25,10 @@ public class ApuestaResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(FootballMediaType.football_APUESTA)
-    public Response createApuesta(@FormParam("partidoid") String partidoid, @FormParam("cuota1") float cuota1, @FormParam("cuotax") float cuotax, @FormParam("cuota2") float cuota2, @FormParam("ganadora") String ganadora, @FormParam("estado") String estado, @Context UriInfo uriInfo) throws URISyntaxException{
-        if(partidoid == null || cuota1== 0 || cuotax == 0 || cuota2 == 0 || ganadora == null || estado == null)
+    public Response createApuesta(@FormParam("id") String id, @FormParam("cuota1") float cuota1, @FormParam("cuotax") float cuotax, @FormParam("cuota2") float cuota2, @FormParam("ganadora") String ganadora, @FormParam("estado") String estado, @Context UriInfo uriInfo) throws URISyntaxException{
+        if(id == null || estado == null)
             throw new BadRequestException("all parameters are mandatory");
-        ApuestaDAO apuestaDAO = new ApuestaDAOimpl();
+        ApuestaDAO apuestaDAO = new ApuestaDAOImpl();
         Apuesta apuesta = new Apuesta();
 
         if(!new Rol().permisoAdmin(securityContext))
@@ -36,7 +36,7 @@ public class ApuestaResource {
 
 
         try{
-            apuesta = apuestaDAO.createApuesta(partidoid, cuota1, cuotax, cuota2, ganadora, estado);
+            apuesta = apuestaDAO.createApuesta(id, cuota1, cuotax, cuota2, ganadora, estado);
 
         }catch (ApuestaAlreadyExistsException e){
             throw new WebApplicationException("apuesta already exists", Response.Status.CONFLICT);
@@ -56,7 +56,7 @@ public class ApuestaResource {
         Apuesta apuesta = new Apuesta();
 
         try {
-            apuesta = new ApuestaDAOimpl().getApuestaById(id);
+            apuesta = new ApuestaDAOImpl().getApuestaById(id);
         } catch (SQLException e) {
             throw new InternalServerErrorException(e.getMessage());
         }
@@ -65,19 +65,19 @@ public class ApuestaResource {
         return apuesta;
     }
 
-    @Path("/{id}")
+    @Path("/listado")
     @GET
     @Produces(FootballMediaType.football_APUESTA_COLLECTION)
-    public ApuestaCollection getApuestas(@PathParam("id") String id) {
+    public ApuestaCollection getApuestas() {
         ApuestaCollection apuestaCollection = null;
 
         try {
-            apuestaCollection = new ApuestaDAOimpl().getApuestas();
+            apuestaCollection = new ApuestaDAOImpl().getApuestas();
         } catch (SQLException e) {
             throw new InternalServerErrorException(e.getMessage());
         }
         if(apuestaCollection == null)
-            throw new NotFoundException("Apuesta with id = "+id+" doesn't exist");
+            throw new NotFoundException("Apuestas doesn't exist");
         return apuestaCollection;
     }
 
@@ -98,7 +98,7 @@ public class ApuestaResource {
             throw new ForbiddenException("operation not allowed");
 
         try {
-            apuestan = new ApuestaDAOimpl().updateApuesta(apuesta);
+            apuestan = new ApuestaDAOImpl().updateApuesta(apuesta);
             if(apuestan == null)
                 throw new NotFoundException("Apuesta with id = "+id+" doesn't exist");
         } catch (SQLException e) {
@@ -115,7 +115,7 @@ public class ApuestaResource {
             throw new ForbiddenException("operation not allowed");
 
         try {
-            if(!new ApuestaDAOimpl().deleteApuesta(id))
+            if(!new ApuestaDAOImpl().deleteApuesta(id))
                 throw new NotFoundException("Apuesta with id = "+id+" doesn't exist");
         } catch (SQLException e) {
             throw new InternalServerErrorException();
