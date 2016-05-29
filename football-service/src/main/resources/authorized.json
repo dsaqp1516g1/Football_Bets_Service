@@ -22,5 +22,17 @@
   {
     "path": "(?i)equipo/(?i)n/([0-9a-f]{3})?",
     "methods": ["GET"]
+  },
+  {
+    "path": "(?i)partido/([0-9a-f]{32})?",
+    "methods": ["GET"]
+  },
+  {
+    "path": "(?i)apuesta/([0-9a-f]{32})?",
+    "methods": ["GET"]
+  },
+  {
+    "path": "(?i)apuesta/(?i)listado/",
+    "methods": ["GET"]
   }
 ]

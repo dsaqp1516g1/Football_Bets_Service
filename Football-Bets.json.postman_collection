@@ -16,7 +16,15 @@
 		"cfc2bb50-04c8-de51-edbd-07b0db625550",
 		"f4eea7a2-cead-eeed-9a64-02d3fb8c4dc8",
 		"6955ff37-30bc-c15f-b4ef-38753490667c",
-		"66fdf0f8-a0f7-501f-cf04-8cc3303aca25"
+		"66fdf0f8-a0f7-501f-cf04-8cc3303aca25",
+		"aff60726-b5dc-1378-71d9-b0f969c8ea7f",
+		"0e18e45a-be08-4362-ecf9-b24033fa289f",
+		"2e026647-418e-af71-5519-52c4abcdd681",
+		"e0d405ad-ffd8-51f8-4c5f-d7e1d7004618",
+		"01aca5df-491a-a763-fed7-f6be3b9ed6c5",
+		"120fb1a7-0d76-868d-fc83-ab3b1fb1d4ee",
+		"0215d003-ff2f-a6a6-d4a9-48bbc5026164",
+		"11cf1995-3536-ca88-5f15-badb3502c3d8"
 	],
 	"folders": [],
 	"timestamp": 1462036224095,
@@ -24,6 +32,192 @@
 	"remoteLink": "",
 	"public": false,
 	"requests": [
+		{
+			"id": "01aca5df-491a-a763-fed7-f6be3b9ed6c5",
+			"headers": "X-Auth-Token: f20fa3381d0f11e6a6666057189ebd0d\n",
+			"url": "http://localhost:8080/football/partido",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"data": [
+				{
+					"key": "local",
+					"value": "3EDB2D3812D011E69FF16057189EBD0D",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "visitante",
+					"value": "2323BB4E185011E69E436057189EBD0D",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "jornada",
+					"value": "5",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fecha",
+					"value": "2014-10-14",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "goleslocal",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "golesvisitante",
+					"value": "8",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "estado",
+					"value": "programado",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "[Partido] Crear Partido",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1464271167233,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0215d003-ff2f-a6a6-d4a9-48bbc5026164",
+			"headers": "X-Auth-Token: f20fa3381d0f11e6a6666057189ebd0d\nContent-Type: application/vnd.dsa.football.partido+json\n",
+			"url": "http://localhost:8080/football/partido/619A1CC41D1811E6A6666057189EBD0D",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"data": [],
+			"dataMode": "raw",
+			"name": "[Partido] UPDATE Partido",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1464271186643,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n  \"links\": null,\n  \"id\": \"619A1CC41D1811E6A6666057189EBD0D\",\n  \"local\": \"3EDB2D3812D011E69FF16057189EBD0D\",\n  \"visitante\": \"2323BB4E185011E69E436057189EBD0D\",\n  \"jornada\": 20,\n  \"fecha\": \"2014-10-14\",\n  \"goleslocal\": 6,\n  \"golesvisitante\": 8,\n  \"estado\": \"finalizado\"\n}"
+		},
+		{
+			"id": "0e18e45a-be08-4362-ecf9-b24033fa289f",
+			"headers": "X-Auth-Token: 95b07f80185011e699fd001f3bc3e069\n",
+			"url": "http://localhost:8080/football/apuesta/listado/",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1464274395964,
+			"name": "[APUESTA_Collection] Listado Apuestas",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
+			"id": "11cf1995-3536-ca88-5f15-badb3502c3d8",
+			"headers": "X-Auth-Token: f20fa3381d0f11e6a6666057189ebd0d\n",
+			"url": "http://localhost:8080/football/partido/8CF2E8F41D1211E6A6666057189EBD0D",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "DELETE",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"data": null,
+			"dataMode": "params",
+			"name": "[Partido] Delete Partido",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1464271194610,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "120fb1a7-0d76-868d-fc83-ab3b1fb1d4ee",
+			"headers": "X-Auth-Token: f20fa3381d0f11e6a6666057189ebd0d\n",
+			"url": "http://localhost:8080/football/partido/41DD71CA1D1111E6A6666057189EBD0D",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"data": [
+				{
+					"key": "local",
+					"value": "3EDB2D3812D011E69FF16057189EBD0D",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "visitante",
+					"value": "2323BB4E185011E69E436057189EBD0D",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "jornada",
+					"value": "5",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fecha",
+					"value": "2014-10-14",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "goleslocal",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "golesvisitante",
+					"value": "8",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "estado",
+					"value": "programado",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "[Partido] GET Partido",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1464271176655,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
 		{
 			"id": "12e0054a-9045-6a15-2a76-76ed187eec52",
 			"headers": "",
@@ -95,6 +289,62 @@
 			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
 			"responses": [],
 			"rawModeData": ""
+		},
+		{
+			"id": "2e026647-418e-af71-5519-52c4abcdd681",
+			"headers": "X-Auth-Token: 95b07f80185011e699fd001f3bc3e069\n",
+			"url": "http://localhost:8080/football/apuesta",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "id",
+					"value": "390DA9FF0F0311E69F66001F3BC3E069",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cuota1",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cuotax",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cuota2",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "ganadora",
+					"value": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "estado",
+					"value": "activa",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1463065269703,
+			"name": "[APUESTA] Registro Apuesta",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
 		},
 		{
 			"id": "2f2f437b-6b89-0be3-33bf-e89bd020c31d",
@@ -213,6 +463,25 @@
 			"rawModeData": "{\n  \"id\": \"D1B1DFEB0EFD11E69F66001F3BC3E069\",\n  \"loginid\": \"mbmarkus10\",\n  \"email\": \"me2@me.com\",\n  \"balance\": 12.1\n}"
 		},
 		{
+			"id": "aff60726-b5dc-1378-71d9-b0f969c8ea7f",
+			"headers": "",
+			"url": "http://localhost:8080/football/apuesta/83E1AB49234C11E68AFD001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1464274066862,
+			"name": "[APUESTA] Get Apuesta",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": []
+		},
+		{
 			"id": "b21fa647-6f09-b308-fb85-f28b7525cd18",
 			"headers": "X-Auth-Token: eda37c4f0ff411e6942c001f3bc3e069\n",
 			"url": "http://localhost:8080/football/equipo",
@@ -325,6 +594,26 @@
 			"description": "Prueba",
 			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
 			"responses": []
+		},
+		{
+			"id": "e0d405ad-ffd8-51f8-4c5f-d7e1d7004618",
+			"headers": "X-Auth-Token: d1b4d4700efd11e69f66001f3bc3e069\nContent-Type: application/vnd.dsa.football.apuesta+json\n",
+			"url": "http://localhost:8080/football/apuesta/83E1AB49234C11E68AFD001F3BC3E069",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1464274365160,
+			"name": "[APUESTA] Mod Apuesta",
+			"description": "",
+			"collectionId": "8698fee5-8a46-7848-e181-73d98a2454ad",
+			"responses": [],
+			"rawModeData": "{\n  \"id\": \"83E1AB49234C11E68AFD001F3BC3E069\",\n  \"cuota1\": 0,\n  \"cuotax\": 1,\n  \"cuota2\": 0,\n  \"ganadora\": \"x\",\n  \"estado\": \"finalizada\"\n}"
 		},
 		{
 			"id": "e9b244bb-9a4a-7c36-8c74-1fe2614f9a37",

@@ -24,7 +24,7 @@ public class PartidoResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(FootballMediaType.football_PARTIDO)
     public Response createPartido(@FormParam("local") String local, @FormParam("visitante") String visitante, @FormParam("jornada") int jornada, @FormParam("fecha") String fecha, @FormParam("goleslocal") int goleslocal, @FormParam("golesvisitante") int golesvisitante, @FormParam("estado") String estado, @Context UriInfo uriInfo) throws URISyntaxException {
-        if(local == null || visitante == null || jornada == 0 || fecha == null || goleslocal == 0 || golesvisitante == 0|| estado ==null)
+        if(local == null || visitante == null || jornada == 0 || fecha == null || estado ==null)
             throw new BadRequestException("all parameters are mandatory");
         PartidoDAO partidoDAO = new PartidoDAOimpl();
         Partido partido = new Partido();

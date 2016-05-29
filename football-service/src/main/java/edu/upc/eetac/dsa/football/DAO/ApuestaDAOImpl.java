@@ -32,7 +32,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             stmt.setString(5, ganadora);
             stmt.setString(6, estado);
             stmt.executeUpdate();
-            connection.commit();
+
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -97,6 +97,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             ResultSet rs = stmt.executeQuery();
             // Procesa los resultados
             if (rs.next()) {
+                apuesta = new Apuesta();
                 apuesta.setId(rs.getString("id"));
                 apuesta.setCuota1(rs.getFloat("cuota1"));
                 apuesta.setCuotax(rs.getFloat("cuotax"));
@@ -106,7 +107,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             }
         } catch (SQLException e) {
             // Relanza la excepción
-            throw e;
+            //throw e;
         } finally {
             // Libera la conexión
             if (stmt != null) stmt.close();
