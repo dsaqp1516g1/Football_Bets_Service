@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.football.DAO;
 
 import edu.upc.eetac.dsa.football.entity.Partido;
+import edu.upc.eetac.dsa.football.entity.PartidoCollection;
 
 import java.sql.SQLException;
 
@@ -13,6 +14,8 @@ public interface PartidoDAO {
     public Partido updatePartido(Partido partido) throws SQLException;
 
     public Partido getPartidoById(String id) throws SQLException;
+
+    public PartidoCollection getPartidos() throws SQLException;
 
     public boolean deletePartido(String id) throws SQLException;
 

@@ -2,6 +2,7 @@ package edu.upc.eetac.dsa.football.DAO;
 
 import edu.upc.eetac.dsa.football.Database.Database;
 import edu.upc.eetac.dsa.football.entity.Partido;
+import edu.upc.eetac.dsa.football.entity.PartidoCollection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,6 +131,47 @@ public class PartidoDAOimpl implements PartidoDAO{
 
         // Devuelve el modelo
         return partido;
+    }
+
+    @Override
+    public PartidoCollection getPartidos() throws SQLException {
+        PartidoCollection partidoCollection = new PartidoCollection();
+        // Modelo a devolver
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try {
+            // Obtiene la conexión del DataSource
+            connection = Database.getConnection();
+
+            // Prepara la consulta
+            stmt = connection.prepareStatement(PartidoDAOQuery.GET_PARTIDOS);
+            // Da valor a los parámetros de la consulta
+
+            // Ejecuta la consulta
+            ResultSet rs = stmt.executeQuery();
+            // Procesa los resultados
+            while (rs.next()) {
+                Partido partido = new Partido();
+                partido.setId(rs.getString("id"));
+                partido.setLocal(rs.getString("local"));
+                partido.setVisitante(rs.getString("visitante"));
+                partido.setJornada(rs.getInt("jornada"));
+                partido.setFecha(rs.getString("fecha"));
+                partido.setGoleslocal(rs.getInt("goleslocal"));
+                partido.setGolesvisitante(rs.getInt("golesvisitante"));
+                partido.setEstado(rs.getString("estado"));;
+                partidoCollection.getPartidos().add(partido);
+            }
+        } catch (SQLException e) {
+            // Relanza la excepción
+            throw e;
+        } finally {
+            // Libera la conexión
+            if (stmt != null) stmt.close();
+            if (connection != null) connection.close();
+        }
+        // Devuelve el modelo
+        return partidoCollection;
     }
 
 

@@ -5,6 +5,7 @@ import edu.upc.eetac.dsa.football.DAO.PartidoAlreadyExistsException;
 import edu.upc.eetac.dsa.football.DAO.PartidoDAO;
 import edu.upc.eetac.dsa.football.DAO.PartidoDAOimpl;
 import edu.upc.eetac.dsa.football.entity.Partido;
+import edu.upc.eetac.dsa.football.entity.PartidoCollection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -59,6 +60,22 @@ public class PartidoResource {
             throw new NotFoundException("Equipo with id = "+id+" doesn't exist");
         return partido;
     }
+
+    @GET
+    @Produces(FootballMediaType.football_PARTIDO_COLLECTION)
+    public PartidoCollection getPartidos() {
+        PartidoCollection partidoCollection = null;
+
+        try {
+            partidoCollection = new PartidoDAOimpl().getPartidos();
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e.getMessage());
+        }
+        if(partidoCollection == null)
+            throw new NotFoundException("Partidos doesn't exist");
+        return partidoCollection;
+    }
+
     @Path("/{id}")
     @PUT
     @Consumes(FootballMediaType.football_PARTIDO)
