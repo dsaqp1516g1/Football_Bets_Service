@@ -165,13 +165,15 @@ public class ApuestaDAOImpl implements ApuestaDAO{
     }
 
     @Override
-    public void deleteApuesta(String id) throws SQLException {
+    public boolean deleteApuesta(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement stmt = null;
         Apuesta apuesta = new Apuesta();
         ApuestaUsuario apuestaUsuario = null;
         UserDAO userDAO = new UserDAOImpl();
         User user = null;
+        boolean estado = false;
+
 
         try {
             connection = Database.getConnection();
@@ -191,13 +193,16 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                     float nuevobalance = rs.getFloat("valor") + user.getBalance();
                     userDAO.updateProfile(user.getId(), user.getEmail(), nuevobalance);
                 }
+                estado = true;
             }
             else
             {
                 stmt = connection.prepareStatement(ApuestaDAOQuery.DELETE_APUESTA);
                 stmt.setString(1, id);
                 stmt.executeUpdate();
+                estado = true;
             }
+            return estado;
         } catch (SQLException e) {
             throw e;
         } finally {
