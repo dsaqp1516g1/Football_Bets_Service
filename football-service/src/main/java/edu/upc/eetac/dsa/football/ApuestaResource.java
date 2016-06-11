@@ -126,10 +126,10 @@ public class ApuestaResource {
         }
     }
 
-    @Path("/finalizar/{id}")
+    @Path("/finalizar/")
     @POST
     @Produces(FootballMediaType.football_APUESTA)
-    public Apuesta finalizarApuesta(@PathParam("id") String id) throws SQLException {
+    public Apuesta finalizarApuesta(@FormParam("id") String id, @FormParam("ganadora") String ganadora) throws SQLException {
 
         PartidoDAO partidoDAO = new PartidoDAOimpl();
         Partido partido = new Partido();
@@ -139,21 +139,11 @@ public class ApuestaResource {
             throw new ForbiddenException("operation not allowed");
         try {
             partido = partidoDAO.getPartidoById(id);
-            if (partido.getEstado() != "finalizado")
+            String estado = partido.getEstado();
+            if (estado.compareTo("finalizado") != 0) {
                 throw new NotAllowedException("Partido no finalizado");
-
-            if (partido.getGoleslocal() > partido.getGolesvisitante())
-            {
-                apuestaDAO.finalizacionApuesta(id, "1");
             }
-            if (partido.getGoleslocal() > partido.getGolesvisitante())
-            {
-                apuestaDAO.finalizacionApuesta(id, "2");
-            }
-            if (partido.getGoleslocal() == partido.getGolesvisitante())
-            {
-                apuestaDAO.finalizacionApuesta(id, "x");
-            }
+            apuestaDAO.finalizacionApuesta(id, ganadora);
 
             return apuestaDAO.getApuestaById(id);
 

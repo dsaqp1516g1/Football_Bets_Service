@@ -179,7 +179,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             connection = Database.getConnection();
 
             apuesta = getApuestaById(id);
-            if (apuesta.getEstado() == "activa")
+            if (apuesta.getEstado().equals("activa"))
             {
                 stmt = connection.prepareStatement(ApuestaDAOQuery.GET_APUESTAS_BY_APUESTAID);
                 stmt.setString(1, id);
@@ -340,7 +340,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                 switch (apuestaUsuario.getResultado())
                 {
                     case "1":
-                        if (ganadora=="1") {
+                        if (ganadora.compareTo("1") == 0) {
                             apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuota1());
                             apuestaUsuario.setResolucion("ganada");
                             user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
@@ -351,8 +351,9 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                             apuestaUsuario.setResolucion("perdida");
                             apuestaUsuario.setBalance(-apuestaUsuario.getValor());
                         }
+                        break;
                     case "x":
-                        if (ganadora=="x") {
+                        if (ganadora.equals("x")) {
                             apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuotax());
                             apuestaUsuario.setResolucion("ganada");
                             user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
@@ -363,8 +364,9 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                             apuestaUsuario.setResolucion("perdida");
                             apuestaUsuario.setBalance(-apuestaUsuario.getValor());
                         }
+                        break;
                     case "2":
-                        if (ganadora=="2") {
+                        if (ganadora.compareTo("2") == 0) {
                             apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuota2());
                             apuestaUsuario.setResolucion("ganada");
                             user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
@@ -375,7 +377,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                             apuestaUsuario.setResolucion("perdida");
                             apuestaUsuario.setBalance(-apuestaUsuario.getValor());
                         }
-
+                        break;
                 }
                 //Actualizamos la apuesta
                 updateApuestaUsuario(apuestaUsuario);
@@ -471,7 +473,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                 apuestaUsuario.setApuestaid(rs.getString("apuestaid"));
                 apuestaUsuario.setResultado(rs.getString("resultado"));
                 apuestaUsuario.setValor(rs.getFloat("valor"));
-                apuestaUsuario.setResolucion("");
+                apuestaUsuario.setResolucion(rs.getString("resolucion"));
                 apuestaUsuario.setBalance(rs.getFloat("balance"));
             }
         } catch (SQLException e) {
@@ -513,7 +515,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
                 apuestaUsuario.setApuestaid(rs.getString("apuestaid"));
                 apuestaUsuario.setResultado(rs.getString("resultado"));
                 apuestaUsuario.setValor(rs.getFloat("valor"));
-                apuestaUsuario.setResolucion("");
+                apuestaUsuario.setResolucion(rs.getString("resolucion"));
                 apuestaUsuario.setBalance(rs.getFloat("balance"));
 
                 apuestaUsuarioCollection.getApuestasUsuario().add(apuestaUsuario);
