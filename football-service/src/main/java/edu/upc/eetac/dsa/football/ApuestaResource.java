@@ -6,6 +6,8 @@ import edu.upc.eetac.dsa.football.DAO.ApuestaDAO;
 import edu.upc.eetac.dsa.football.DAO.ApuestaDAOImpl;
 import edu.upc.eetac.dsa.football.entity.Apuesta;
 import edu.upc.eetac.dsa.football.entity.ApuestaCollection;
+import edu.upc.eetac.dsa.football.entity.ApuestaUsuario;
+import edu.upc.eetac.dsa.football.entity.ApuestaUsuarioCollection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -18,6 +20,13 @@ import java.sql.SQLException;
  */
 @Path("apuesta")
 public class ApuestaResource {
+
+
+    /**
+     *
+     * General
+     *
+     */
 
     @Context
     private SecurityContext securityContext;
@@ -120,6 +129,70 @@ public class ApuestaResource {
         } catch (SQLException e) {
             throw new InternalServerErrorException();
         }
+    }
+
+    /**
+     *
+     * USUARIOS
+     *
+     */
+    @Path("/usuarios/")
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(FootballMediaType.football_APUESTAUSUARIO)
+    public Response createApuestaUsuario(@FormParam("idusuario") String idusuario, @FormParam("idapuesta") String idapuesta,
+                                         @FormParam("resultado") String resultado, @FormParam("valor") float valor,
+                                         @Context UriInfo uriInfo) throws URISyntaxException
+    {
+        if(idusuario == null || idapuesta == null || resultado == null || valor == 0)
+            throw new BadRequestException("all parameters are mandatory");
+        ApuestaDAO apuestaDAO = new ApuestaDAOImpl();
+        ApuestaUsuario apuestaUsuario = new ApuestaUsuario();
+
+        if(!new Rol().permisoAdmin_Usuario(idusuario, securityContext))
+            throw new ForbiddenException("operation not allowed");
+
+        try{
+            apuestaUsuario = apuestaDAO.createApuestaUsuario(idusuario, idapuesta, resultado, valor);
+            apuestaDAO.actuCuotas(apuestaUsuario.getApuestaid());
+        }catch(SQLException e){
+            throw new InternalServerErrorException();
+        }
+        URI uri = new URI(uriInfo.getAbsolutePath().toString() + "/" + apuestaUsuario.getId());
+        return Response.created(uri).type(FootballMediaType.football_APUESTAUSUARIO).entity(apuestaUsuario).build();
+
+    }
+
+    @Path("/usuarios/{id}")
+    @GET
+    @Produces(FootballMediaType.football_APUESTAUSUARIO)
+    public ApuestaUsuario getApuestaUsuarioByID(@PathParam("id") String id){
+        ApuestaUsuario apuestaUsuario = new ApuestaUsuario();
+
+        try {
+            apuestaUsuario = new ApuestaDAOImpl().getApuestaUsuarioById(id);
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e.getMessage());
+        }
+        if(apuestaUsuario == null)
+            throw new NotFoundException("Apuesta with id = "+id+" doesn't exist");
+        return apuestaUsuario;
+    }
+
+    @Path("/usuarioslistados/{id}")
+    @GET
+    @Produces(FootballMediaType.football_APUESTAUSUARIO_COLLECTION)
+    public ApuestaUsuarioCollection getApuestasUsuarios(@PathParam("id") String id) {
+        ApuestaUsuarioCollection apuestaCollection = null;
+
+        try {
+            apuestaCollection = new ApuestaDAOImpl().getApuestasUsuario(id);
+        } catch (SQLException e) {
+            throw new InternalServerErrorException(e.getMessage());
+        }
+        if(apuestaCollection == null)
+            throw new NotFoundException("Apuestas doesn't exist");
+        return apuestaCollection;
     }
 
 

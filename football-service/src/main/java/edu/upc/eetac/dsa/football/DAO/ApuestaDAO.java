@@ -2,6 +2,8 @@ package edu.upc.eetac.dsa.football.DAO;
 
 import edu.upc.eetac.dsa.football.entity.Apuesta;
 import edu.upc.eetac.dsa.football.entity.ApuestaCollection;
+import edu.upc.eetac.dsa.football.entity.ApuestaUsuario;
+import edu.upc.eetac.dsa.football.entity.ApuestaUsuarioCollection;
 
 import java.sql.SQLException;
 
@@ -14,6 +16,8 @@ public interface ApuestaDAO {
     public Apuesta getApuestaById(String id) throws SQLException;
     public ApuestaCollection getApuestas() throws SQLException;
     public boolean deleteApuesta(String id) throws SQLException;
-    public Apuesta actuCuotas(String apuestaid, float cuota1, float cuotax, float cuota2) throws SQLException;
-
+    public Apuesta actuCuotas(String apuestaid) throws SQLException;
+    public ApuestaUsuario getApuestaUsuarioById(String id) throws SQLException;
+    public ApuestaUsuario createApuestaUsuario(String idusuario, String idapuesta, String resultado, float valor) throws SQLException;
+    public ApuestaUsuarioCollection getApuestasUsuario(String id) throws SQLException;
 }
