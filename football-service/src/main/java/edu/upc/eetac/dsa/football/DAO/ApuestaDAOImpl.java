@@ -2,6 +2,7 @@ package edu.upc.eetac.dsa.football.DAO;
 
 import edu.upc.eetac.dsa.football.Database.Database;
 import edu.upc.eetac.dsa.football.entity.*;
+import sun.java2d.UnixSurfaceManagerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -164,17 +165,39 @@ public class ApuestaDAOImpl implements ApuestaDAO{
     }
 
     @Override
-    public boolean deleteApuesta(String id) throws SQLException {
+    public void deleteApuesta(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement stmt = null;
+        Apuesta apuesta = new Apuesta();
+        ApuestaUsuario apuestaUsuario = null;
+        UserDAO userDAO = new UserDAOImpl();
+        User user = null;
+
         try {
             connection = Database.getConnection();
 
-            stmt = connection.prepareStatement(ApuestaDAOQuery.DELETE_APUESTA);
-            stmt.setString(1, id);
+            apuesta = getApuestaById(id);
+            if (apuesta.getEstado() == "activa")
+            {
+                stmt = connection.prepareStatement(ApuestaDAOQuery.GET_APUESTAS_BY_APUESTAID);
+                stmt.setString(1, id);
+                // Ejecuta la consulta
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    apuestaUsuario = new ApuestaUsuario();
 
-            int rows = stmt.executeUpdate();
-            return (rows == 1);
+                    //Devolvemos el valor apostado ya que se ha finalizado antes de tiempo
+                    user = userDAO.getUserById(rs.getString("usuarioid"));
+                    float nuevobalance = rs.getFloat("valor") + user.getBalance();
+                    userDAO.updateProfile(user.getId(), user.getEmail(), nuevobalance);
+                }
+            }
+            else
+            {
+                stmt = connection.prepareStatement(ApuestaDAOQuery.DELETE_APUESTA);
+                stmt.setString(1, id);
+                stmt.executeUpdate();
+            }
         } catch (SQLException e) {
             throw e;
         } finally {
@@ -240,7 +263,7 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             /**
              * Implementamos de manera guarra con la declaración de floats debido a que SQL no permite la
              * división entera, ya que esta da demasiados decimales y, por lo tanto, da infinito. La solución es
-             * detectar el DOuble.Positive_Infinity y devolver el valor de 0.
+             * detectar el Float.Positive_Infinity y devolver el valor de 0.
              */
 
             float n1 = suma/c1;
@@ -258,6 +281,101 @@ public class ApuestaDAOImpl implements ApuestaDAO{
             stmt.setString(4, id);
 
             int rows = stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (stmt != null) stmt.close();
+
+            if (connection != null) connection.close();
+        }
+
+        return getApuestaById(id);
+    }
+
+    @Override
+    public Apuesta finalizacionApuesta(String id, String ganadora) throws SQLException
+    {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ApuestaUsuario apuestaUsuario = new ApuestaUsuario();
+        Apuesta apuesta = new Apuesta();
+        UserDAO userDAO = new UserDAOImpl();
+
+        try {
+            connection = Database.getConnection();
+
+            stmt = connection.prepareStatement(ApuestaDAOQuery.FINAL_APUESTA);
+            stmt.setString(1, ganadora); //1, 2 o X
+            stmt.setString(2, "finalizada");
+            stmt.setString(3, id);
+            stmt.executeUpdate();
+
+            connection.setAutoCommit(false);
+            stmt.close();
+
+            ApuestaDAO apuestaDAO = new ApuestaDAOImpl();
+            apuesta = apuestaDAO.getApuestaById(id);
+
+            stmt = connection.prepareStatement(ApuestaDAOQuery.GET_APUESTAS_BY_APUESTAID);
+            stmt.setString(1, id);
+            // Ejecuta la consulta
+            ResultSet rs = stmt.executeQuery();
+            // Procesa los resultados
+            while (rs.next()) {
+                apuestaUsuario = new ApuestaUsuario();
+                apuestaUsuario.setId(rs.getString("id"));
+                apuestaUsuario.setUsuarioid(rs.getString("usuarioid"));
+                apuestaUsuario.setApuestaid(rs.getString("apuestaid"));
+                apuestaUsuario.setValor(rs.getFloat("valor"));
+                apuestaUsuario.setResultado(rs.getString("resultado"));
+
+                User user = new User();
+
+                switch (apuestaUsuario.getResultado())
+                {
+                    case "1":
+                        if (ganadora=="1") {
+                            apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuota1());
+                            apuestaUsuario.setResolucion("ganada");
+                            user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
+                            float nuevobalance = apuestaUsuario.getBalance() + user.getBalance();
+                            userDAO.updateProfile(user.getId(), user.getEmail(), nuevobalance);
+                        }
+                        else {
+                            apuestaUsuario.setResolucion("perdida");
+                            apuestaUsuario.setBalance(-apuestaUsuario.getValor());
+                        }
+                    case "x":
+                        if (ganadora=="x") {
+                            apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuotax());
+                            apuestaUsuario.setResolucion("ganada");
+                            user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
+                            float nuevobalance = apuestaUsuario.getBalance() + user.getBalance();
+                            userDAO.updateProfile(user.getId(), user.getEmail(), nuevobalance);
+                        }
+                        else {
+                            apuestaUsuario.setResolucion("perdida");
+                            apuestaUsuario.setBalance(-apuestaUsuario.getValor());
+                        }
+                    case "2":
+                        if (ganadora=="2") {
+                            apuestaUsuario.setBalance(apuestaUsuario.getValor() * apuesta.getCuota2());
+                            apuestaUsuario.setResolucion("ganada");
+                            user = userDAO.getUserById(apuestaUsuario.getUsuarioid());
+                            float nuevobalance = apuestaUsuario.getBalance() + user.getBalance();
+                            userDAO.updateProfile(user.getId(), user.getEmail(), nuevobalance);
+                        }
+                        else {
+                            apuestaUsuario.setResolucion("perdida");
+                            apuestaUsuario.setBalance(-apuestaUsuario.getValor());
+                        }
+
+                }
+                //Actualizamos la apuesta
+                updateApuestaUsuario(apuestaUsuario);
+            }
+            stmt.close();
 
         } catch (SQLException e) {
             throw e;
@@ -405,6 +523,32 @@ public class ApuestaDAOImpl implements ApuestaDAO{
         }
         // Devuelve el modelo
         return apuestaUsuarioCollection;
+    }
+
+    @Override
+    public void updateApuestaUsuario(ApuestaUsuario apuestaUsuario) throws SQLException {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try {
+            connection = Database.getConnection();
+
+            stmt = connection.prepareStatement(ApuestaDAOQuery.UPDATE_APUESTA_USUARIO);
+            stmt.setString(1, apuestaUsuario.getUsuarioid());
+            stmt.setString(2, apuestaUsuario.getApuestaid());
+            stmt.setString(3, apuestaUsuario.getResultado());
+            stmt.setFloat(4, apuestaUsuario.getValor());
+            stmt.setString(5, apuestaUsuario.getResolucion());
+            stmt.setFloat(6, apuestaUsuario.getBalance());
+            stmt.setString(7, apuestaUsuario.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (stmt != null) stmt.close();
+            if (connection != null) connection.close();
+        }
     }
 
 }

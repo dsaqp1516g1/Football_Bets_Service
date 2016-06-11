@@ -1,13 +1,8 @@
 package edu.upc.eetac.dsa.football;
 
 import edu.upc.eetac.dsa.football.Auth.Rol;
-import edu.upc.eetac.dsa.football.DAO.ApuestaAlreadyExistsException;
-import edu.upc.eetac.dsa.football.DAO.ApuestaDAO;
-import edu.upc.eetac.dsa.football.DAO.ApuestaDAOImpl;
-import edu.upc.eetac.dsa.football.entity.Apuesta;
-import edu.upc.eetac.dsa.football.entity.ApuestaCollection;
-import edu.upc.eetac.dsa.football.entity.ApuestaUsuario;
-import edu.upc.eetac.dsa.football.entity.ApuestaUsuarioCollection;
+import edu.upc.eetac.dsa.football.DAO.*;
+import edu.upc.eetac.dsa.football.entity.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -126,6 +121,42 @@ public class ApuestaResource {
         try {
             if(!new ApuestaDAOImpl().deleteApuesta(id))
                 throw new NotFoundException("Apuesta with id = "+id+" doesn't exist");
+        } catch (SQLException e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Path("/finalizar/{id}")
+    @POST
+    @Produces(FootballMediaType.football_APUESTA)
+    public Apuesta finalizarApuesta(@PathParam("id") String id) throws SQLException {
+
+        PartidoDAO partidoDAO = new PartidoDAOimpl();
+        Partido partido = new Partido();
+        ApuestaDAO apuestaDAO = new ApuestaDAOImpl();
+
+        if(!new Rol().permisoAdmin(securityContext))
+            throw new ForbiddenException("operation not allowed");
+        try {
+            partido = partidoDAO.getPartidoById(id);
+            if (partido.getEstado() != "finalizado")
+                throw new NotAllowedException("Partido no finalizado");
+
+            if (partido.getGoleslocal() > partido.getGolesvisitante())
+            {
+                apuestaDAO.finalizacionApuesta(id, "1");
+            }
+            if (partido.getGoleslocal() > partido.getGolesvisitante())
+            {
+                apuestaDAO.finalizacionApuesta(id, "2");
+            }
+            if (partido.getGoleslocal() == partido.getGolesvisitante())
+            {
+                apuestaDAO.finalizacionApuesta(id, "x");
+            }
+
+            return apuestaDAO.getApuestaById(id);
+
         } catch (SQLException e) {
             throw new InternalServerErrorException();
         }

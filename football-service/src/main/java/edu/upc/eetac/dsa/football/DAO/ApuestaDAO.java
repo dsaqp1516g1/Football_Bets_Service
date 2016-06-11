@@ -15,9 +15,11 @@ public interface ApuestaDAO {
     public Apuesta updateApuesta(Apuesta apuesta) throws SQLException;
     public Apuesta getApuestaById(String id) throws SQLException;
     public ApuestaCollection getApuestas() throws SQLException;
-    public boolean deleteApuesta(String id) throws SQLException;
+    public void deleteApuesta(String id) throws SQLException;
     public Apuesta actuCuotas(String apuestaid) throws SQLException;
     public ApuestaUsuario getApuestaUsuarioById(String id) throws SQLException;
     public ApuestaUsuario createApuestaUsuario(String idusuario, String idapuesta, String resultado, float valor) throws SQLException;
     public ApuestaUsuarioCollection getApuestasUsuario(String id) throws SQLException;
+    public Apuesta finalizacionApuesta(String id, String ganadora) throws SQLException;
+    public void updateApuestaUsuario(ApuestaUsuario apuestaUsuario) throws SQLException;
 }
