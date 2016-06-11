@@ -5,6 +5,7 @@ import edu.upc.eetac.dsa.football.DAO.JugadoresAlreadyExistsException;
 import edu.upc.eetac.dsa.football.DAO.JugadoresDAO;
 import edu.upc.eetac.dsa.football.DAO.JugadoresDAOimpl;
 import edu.upc.eetac.dsa.football.entity.Jugadores;
+import edu.upc.eetac.dsa.football.entity.JugadoresCollection;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
@@ -57,20 +58,20 @@ public class JugadoresResource {
         return jugadores;
     }
 
-    @Path("/n/{equipoid}")
+    @Path("/listado/{equipoid}")
     @GET
-    @Produces(FootballMediaType.football_JUGADORES)
-    public Jugadores getJugadoresbyEID(@PathParam("equipoid") String equipoid) {
-        Jugadores jugadores = new Jugadores();
+    @Produces(FootballMediaType.football_JUGADORES_COLLECTION)
+    public JugadoresCollection getJugadores(@PathParam("equipoid") String equipoid) {
+        JugadoresCollection jugadoresCollection = new JugadoresCollection();
 
         try {
-            jugadores = new JugadoresDAOimpl().getJugadoresbyNOM(equipoid);
+            jugadoresCollection = new JugadoresDAOimpl().getJugadores(equipoid);
         } catch (SQLException e) {
             throw new InternalServerErrorException(e.getMessage());
         }
-        if(jugadores == null)
+        if(jugadoresCollection == null)
             throw new NotFoundException("Jugador with id = "+equipoid+" doesn't exist");
-        return jugadores;
+        return jugadoresCollection;
     }
 
     @Path("/{nombre}")

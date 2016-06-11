@@ -12,9 +12,9 @@ public interface FootballMediaType {
     public final static String football_EQUIPO = "application/vnd.dsa.football.equipo+json";
     public final static String football_EQUIPO_COLLECTION = "application/vnd.dsa.football.equipocollection+json";
     public final static String football_JUGADORES = "application/vnd.dsa.football.jugadores+json";
-    public final static String football_JUGADORES_COLLECTION = "application/vnd.dsa.football.resources+json";
+    public final static String football_JUGADORES_COLLECTION = "application/vnd.dsa.football.jugadorescollection+json";
     public final static String football_LIGA = "application/vnd.dsa.football.campeonato+json";
-    public final static String football_LIGA_COLLECTION = "application/vnd.dsa.football.resources+json";
+    public final static String football_LIGA_COLLECTION = "application/vnd.dsa.football.campeonatocollection+json";
     public final static String football_PARTIDO = "application/vnd.dsa.football.partido+json";
     public final static String football_PARTIDO_COLLECTION = "application/vnd.dsa.football.resources+json";
 

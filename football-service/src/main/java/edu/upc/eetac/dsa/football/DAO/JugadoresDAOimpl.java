@@ -78,15 +78,16 @@ public class JugadoresDAOimpl implements JugadoresDAO {
     }
 
     @Override
-    public Jugadores getJugadoresbyEID(String equipoid) throws SQLException {
+    public JugadoresCollection getJugadores(String equipoid) throws SQLException {
         Jugadores jugadores = null;
+        JugadoresCollection jugadoresCollection = new JugadoresCollection();
 
         Connection connection = null;
         PreparedStatement stmt = null;
         try {
             connection = Database.getConnection();
 
-            stmt = connection.prepareStatement(JugadoresDAOQuery.GET_JUGADORESBYEID);
+            stmt = connection.prepareStatement(JugadoresDAOQuery.GET_JUGADORES_COLLECTION);
             stmt.setString(1, equipoid);
 
             ResultSet rs = stmt.executeQuery();
@@ -100,6 +101,8 @@ public class JugadoresDAOimpl implements JugadoresDAO {
                 jugadores.setNacimiento(rs.getString("nacimiento"));
                 jugadores.setFincontrato(rs.getString("fincontrato"));
 
+                jugadoresCollection.getJugadores().add(jugadores);
+
             }
         } catch (SQLException e) {
             throw e;
@@ -107,12 +110,7 @@ public class JugadoresDAOimpl implements JugadoresDAO {
             if (stmt != null) stmt.close();
             if (connection != null) connection.close();
         }
-        return jugadores;
-    }
-
-    @Override
-    public JugadoresCollection getJugadores() throws SQLException {
-        return null;
+        return jugadoresCollection;
     }
 
     @Override
