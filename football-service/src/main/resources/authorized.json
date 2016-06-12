@@ -34,5 +34,9 @@
   {
     "path": "(?i)apuesta/(?i)listado/",
     "methods": ["GET"]
+  },
+  {
+    "path": "(?i)jugadores/listado/([0-9a-f]{32})?",
+    "methods": ["GET"]
   }
 ]
