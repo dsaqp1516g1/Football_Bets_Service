@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.upc.eetac.dsa.beeter</groupId>
-    <artifactId>beeter-service</artifactId>
+    <groupId>edu.upc.eetac.dsa.football</groupId>
+    <artifactId>footballbets-service</artifactId>
     <packaging>jar</packaging>
     <version>0.1</version>
-    <name>beeter-service</name>
+    <name>footballbets-service</name>
 
     <dependencyManagement>
         <dependencies>
@@ -95,7 +95,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>edu.upc.eetac.dsa.beeter.Main</mainClass>
+                            <mainClass>edu.upc.eetac.dsa.football.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -115,7 +115,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>edu.upc.eetac.dsa.grouptalk.Main</mainClass>
+                    <mainClass>edu.upc.eetac.dsa.football.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
